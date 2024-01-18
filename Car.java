@@ -10,11 +10,11 @@ public class Car {
 
     /**
      * The constructor for the class car
-     * @param turboOn
-     * @param nrDoors
-     * @param enginePower
-     * @param color
-     * @param modelName
+     * @param turboOn If the car has a turbo
+     * @param nrDoors Number of doors on the car
+     * @param enginePower Engine power of the car
+     * @param color Color of the car
+     * @param modelName Car model name
      */
     protected Car(boolean turboOn, int nrDoors,double enginePower,Color color, String modelName) {
         this.nrDoors = nrDoors;
