@@ -1,34 +1,118 @@
 import java.awt.*;
 
 public class Car implements Movable {
-    protected boolean turboOn;    // If the car has a turbo
     protected int nrDoors;        // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
     protected Color color;        // Color of the car
     protected String modelName;  // Car model name
-    protected int xPos;  // x-coordinate of car
-    protected int yPos;  // y-coordinate of car
+    protected double xPos;  // x-coordinate of car
+    protected double yPos;  // y-coordinate of car
     protected int[] direction;  // Direction of car, type array with two ints, e.g. {0, 1}
 
     /**
      * The constructor for the class car
-     * @param turboOn If the car has a turbo
-     * @param nrDoors Number of doors on the car
+     *
+     * @param nrDoors     Number of doors on the car
      * @param enginePower Engine power of the car
-     * @param color Color of the car
-     * @param modelName Car model name
+     * @param color       Color of the car
+     * @param modelName   Car model name
      */
-    protected Car(boolean turboOn, int nrDoors,double enginePower,Color color, String modelName, int xPos, int yPos, int[] direction) {
+    protected Car(int nrDoors, double enginePower, Color color, String modelName, int xPos, int yPos, int[] direction) {
         this.nrDoors = nrDoors;
-        this.color = color;
         this.enginePower = enginePower;
-        this.turboOn = turboOn;
+        this.color = color;
         this.modelName = modelName;
         this.xPos = xPos;
         this.yPos = yPos;
         this.direction = direction;
-        //stopEngine();
+        stopEngine();
+    }
+
+    /**
+     * Return the number of doors of the car
+     *
+     * @return number of doors
+     */
+    protected int getNrDoors() {
+        return nrDoors;
+    }
+
+    /**
+     * Returns the current engine power of the car
+     *
+     * @return the engine power
+     */
+    protected double getEnginePower() {
+        return enginePower;
+    }
+
+    /**
+     * Returns the current speed of the car
+     *
+     * @return the current speed
+     */
+    protected double getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    /**
+     * Returns the color of the car
+     *
+     * @return the color
+     */
+    protected Color getColor() {
+        return color;
+    }
+
+    /**
+     * Sets the color of the car
+     *
+     * @param clr the color
+     */
+    protected void setColor(Color clr) {
+        color = clr;
+    }
+
+    /**
+     * Starts the engine setting the car's current speed to 0.1
+     */
+    protected void startEngine() {
+        currentSpeed = 0.1;
+    }
+
+    /**
+     * Stops the engine setting the car's current speed to 0
+     */
+    protected void stopEngine() {
+        currentSpeed = 0;
+    }
+
+    /**
+     * Calculates a factor used when changing the speed of the car (will be overridden)
+     *
+     * @return the speedfactor
+     */
+    protected double speedFactor() {
+        return enginePower * 0.01;
+    }
+
+    /**
+     * Increase the current speed of the car
+     *
+     * @param amount how much the speed should increase with
+     */
+    protected void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+    }
+
+    /**
+     * Decrease the current speed of the car
+     *
+     * @param amount how much the speed should decrease with
+     */
+    public void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
     public void move() {
@@ -37,13 +121,13 @@ public class Car implements Movable {
     }
 
     public void turnLeft() {
-        if this.xPos == 0 && this.yPos == 1 {  // North to West
+        if (this.xPos == 0 && this.yPos == 1) {  // North to West
             this.xPos = -1;
             this.yPos = 0;
-        } else if this.xPos == -1 && this.yPos == 0 {  // West to South
+        } else if (this.xPos == -1 && this.yPos == 0) {  // West to South
             this.xPos = 0;
             this.yPos = -1;
-        } else if this.xPos == 0 && this.yPos == -1 {  // South to East
+        } else if (this.xPos == 0 && this.yPos == -1) {  // South to East
             this.xPos = 1;
             this.yPos = 0;
         } else {  // East to North
@@ -53,13 +137,13 @@ public class Car implements Movable {
     }
 
     public void turnRight() {
-        if this.xPos == 0 && this.yPos == 1 {  // North to East
+        if (this.xPos == 0 && this.yPos == 1) {  // North to East
             this.xPos = 1;
             this.yPos = 0;
-        } else if this.xPos == 1 && this.yPos == 0 {  // East to South
+        } else if (this.xPos == 1 && this.yPos == 0) {  // East to South
             this.xPos = 0;
             this.yPos = -1;
-        } else if this.xPos == 0 && this.yPos == -1 {  // South to West
+        } else if (this.xPos == 0 && this.yPos == -1) {  // South to West
             this.xPos = -1;
             this.yPos = 0;
         } else {  // West to North
@@ -68,4 +152,23 @@ public class Car implements Movable {
         }
     }
 
+    /**
+     * Method that increases the current speed
+     * @param amount the amount which is between 0 and 1
+     */
+    public void gas(double amount) {
+        if (amount > 0 && amount < 1) {
+            incrementSpeed(amount);
+        }
+    }
+    /**
+     * Method that decreases the current speed
+     * @param amount the amount which is between 0 and 1
+     */
+    protected void brake(double amount) {
+        if (amount > 0 && amount < 1) {
+            decrementSpeed(amount);
+        }
+    }
 }
+
