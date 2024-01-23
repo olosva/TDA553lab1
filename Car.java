@@ -121,34 +121,34 @@ public class Car implements Movable {
     }
 
     public void turnLeft() {
-        if (this.xPos == 0 && this.yPos == 1) {  // North to West
-            this.xPos = -1;
-            this.yPos = 0;
-        } else if (this.xPos == -1 && this.yPos == 0) {  // West to South
-            this.xPos = 0;
-            this.yPos = -1;
-        } else if (this.xPos == 0 && this.yPos == -1) {  // South to East
-            this.xPos = 1;
-            this.yPos = 0;
+        if (this.direction[0] == 0 && this.direction[1] == 1) {  // North to West
+            this.direction[0] = -1;
+            this.direction[1] = 0;
+        } else if (this.direction[0] == -1 && this.direction[1] == 0) {  // West to South
+            this.direction[0] = 0;
+            this.direction[1] = -1;
+        } else if (this.direction[0] == 0 && this.direction[1] == -1) {  // South to East
+            this.direction[0] = 1;
+            this.direction[1] = 0;
         } else {  // East to North
-            this.xPos = 0;
-            this.yPos = 1;
+            this.direction[0] = 0;
+            this.direction[1] = 1;
         }
     }
 
     public void turnRight() {
-        if (this.xPos == 0 && this.yPos == 1) {  // North to East
-            this.xPos = 1;
-            this.yPos = 0;
-        } else if (this.xPos == 1 && this.yPos == 0) {  // East to South
-            this.xPos = 0;
-            this.yPos = -1;
-        } else if (this.xPos == 0 && this.yPos == -1) {  // South to West
-            this.xPos = -1;
-            this.yPos = 0;
+        if (this.direction[0] == 0 && this.direction[1] == 1) {  // North to East
+            this.direction[0] = 1;
+            this.direction[1] = 0;
+        } else if (this.direction[0] == 1 && this.direction[1] == 0) {  // East to South
+            this.direction[0] = 0;
+            this.direction[1] = -1;
+        } else if (this.direction[0] == 0 && this.direction[1] == -1) {  // South to West
+            this.direction[0] = -1;
+            this.direction[1] = 0;
         } else {  // West to North
-            this.xPos = 0;
-            this.yPos = 1;
+            this.direction[0] = 0;
+            this.direction[1] = 1;
         }
     }
 
