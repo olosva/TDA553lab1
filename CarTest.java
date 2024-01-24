@@ -57,9 +57,9 @@ public class CarTest {
 
     @Test
     public void testCarTurnRight() {
-        Car car = new Car(4, 150, Color.blue, "TestCar", 0, 0, new int[]{0, 1});
+        Car car = new Car(4, 150, Color.blue, "TestCar", 0, 0, new int[]{-1, 0});
         car.turnRight();
-        assertArrayEquals(new int[]{1, 0}, car.direction);
+        assertArrayEquals(new int[]{0, 1}, car.direction);
     }
     @Test
     public void testSaab95Turbo() {
@@ -78,4 +78,14 @@ public class CarTest {
         volvo.startEngine();
         assertEquals(1.25, volvo.speedFactor(), 0.01);
     }
+
+    @Test
+    public void testColor(){
+        Car car = new Car(4, 150, Color.blue, "TestCar", 0, 0, new int[]{0, 1});
+        car.setColor(Color.white);
+        assertSame(car.getColor(), Color.white);
+
+    }
+
+
 }
