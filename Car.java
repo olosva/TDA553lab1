@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Car implements Movable {
+public abstract class Car implements Movable {
     protected int nrDoors;        // Number of doors on the car
     protected double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
@@ -18,14 +18,14 @@ public class Car implements Movable {
      * @param color       Color of the car
      * @param modelName   Car model name
      */
-    protected Car(int nrDoors, double enginePower, Color color, String modelName, int xPos, int yPos, int[] direction) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.direction = direction;
+        this.xPos = 0;
+        this.yPos = 0;
+        this.direction = new int[] {0, 1};
         stopEngine();
     }
 
@@ -111,7 +111,7 @@ public class Car implements Movable {
      *
      * @param amount how much the speed should decrease with
      */
-    public void decrementSpeed(double amount) {
+    protected void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
@@ -156,7 +156,7 @@ public class Car implements Movable {
      * Method that increases the current speed
      * @param amount the amount which is between 0 and 1
      */
-    public void gas(double amount) {
+    protected void gas(double amount) {
         if (amount > 0 && amount < 1) {
             incrementSpeed(amount);
         }

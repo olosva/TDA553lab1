@@ -11,7 +11,7 @@ public class Saab95 extends Car{
      * the engine and turbo off.
      */
     protected Saab95(){
-        super(2,125,Color.red, "Saab95", 0,0,new int[]{0,1});
+        super(2,125,Color.red, "Saab95");
         turboOn = false;
         stopEngine();
     }

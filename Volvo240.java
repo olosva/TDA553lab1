@@ -9,7 +9,7 @@ public class Volvo240 extends Car {
      * the engine off.
      */
     protected Volvo240() {
-        super(4, 100, Color.black, "Volvo240", 0, 0, new int[]{0, 1});
+        super(4, 100, Color.black, "Volvo240");
         stopEngine();
     }
 
