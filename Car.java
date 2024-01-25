@@ -25,53 +25,8 @@ public abstract class Car implements Movable {
         this.modelName = modelName;
         this.xPos = 0;
         this.yPos = 0;
-        this.direction = new int[] {0, 1};
+        this.direction = new int[]{0,1};
         stopEngine();
-    }
-
-    /**
-     * Return the number of doors of the car
-     *
-     * @return number of doors
-     */
-    protected int getNrDoors() {
-        return nrDoors;
-    }
-
-    /**
-     * Returns the current engine power of the car
-     *
-     * @return the engine power
-     */
-    protected double getEnginePower() {
-        return enginePower;
-    }
-
-    /**
-     * Returns the current speed of the car
-     *
-     * @return the current speed
-     */
-    protected double getCurrentSpeed() {
-        return currentSpeed;
-    }
-
-    /**
-     * Returns the color of the car
-     *
-     * @return the color
-     */
-    protected Color getColor() {
-        return color;
-    }
-
-    /**
-     * Sets the color of the car
-     *
-     * @param clr the color
-     */
-    protected void setColor(Color clr) {
-        color = clr;
     }
 
     /**
@@ -93,17 +48,15 @@ public abstract class Car implements Movable {
      *
      * @return the speedfactor
      */
-    protected double speedFactor() {
-        return enginePower * 0.01;
-    }
+    public abstract double speedFactor();
 
     /**
      * Increase the current speed of the car
      *
      * @param amount how much the speed should increase with
      */
-    protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+    private void incrementSpeed(double amount) {
+        currentSpeed = Math.min(currentSpeed + speedFactor() * amount, enginePower);
     }
 
     /**
@@ -111,8 +64,8 @@ public abstract class Car implements Movable {
      *
      * @param amount how much the speed should decrease with
      */
-    protected void decrementSpeed(double amount) {
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    private void decrementSpeed(double amount) {
+        currentSpeed = Math.max(currentSpeed - speedFactor() * amount, 0);
     }
 
     public void move() {
@@ -158,7 +111,9 @@ public abstract class Car implements Movable {
      */
     protected void gas(double amount) {
         if (amount > 0 && amount < 1) {
-            incrementSpeed(amount);
+            incrementSpeed(amount);}
+        else {
+            throw new IllegalArgumentException("Amount out of range");
         }
     }
     /**
@@ -167,7 +122,9 @@ public abstract class Car implements Movable {
      */
     protected void brake(double amount) {
         if (amount > 0 && amount < 1) {
-            decrementSpeed(amount);
+            decrementSpeed(amount);}
+        else {
+            throw new IllegalArgumentException("Amount out of range");
         }
     }
 }
