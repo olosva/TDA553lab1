@@ -9,7 +9,8 @@ public abstract class Car implements Movable {
     protected double xPos;  // x-coordinate of car
     protected double yPos;  // y-coordinate of car
     protected int[] direction;  // Direction of car, type array with two ints, e.g. {0, 1}
-
+    // These are set to protected since we´ve removed our getters and setters and do changes directly on the attributes
+    // as said by another TA
     /**
      * The constructor for the class car
      *

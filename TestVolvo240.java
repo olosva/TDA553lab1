@@ -80,5 +80,20 @@ public class TestVolvo240 {
         assertSame(volvo240.color, Color.white);
 
     }
-
+    @Test
+    public void testBrakeWithInvalidAmount() {
+        Volvo240 volvo240 = new Volvo240();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            volvo240.brake(-1);
+        });
+        assertEquals("Amount out of range", exception.getMessage());
+    }
+    @Test
+    public void testGasWithInvalidAmount() {
+        Volvo240 volvo240 = new Volvo240();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            volvo240.gas(-1);
+        });
+        assertEquals("Amount out of range", exception.getMessage());
+    }
 }

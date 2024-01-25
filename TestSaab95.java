@@ -85,5 +85,21 @@ public class TestSaab95 {
 
     }
 
+    @Test
+    public void testBrakeWithInvalidAmount() {
+        Saab95 saab95 = new Saab95();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            saab95.brake(-1);
+        });
+        assertEquals("Amount out of range", exception.getMessage());
+    }
+    @Test
+    public void testGasWithInvalidAmount() {
+        Saab95 saab95 = new Saab95();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            saab95.gas(-1);
+        });
+        assertEquals("Amount out of range", exception.getMessage());
+    }
 
 }
