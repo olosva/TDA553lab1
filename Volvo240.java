@@ -10,7 +10,6 @@ public class Volvo240 extends Car {
      */
     protected Volvo240() {
         super(4, 100, Color.black, "Volvo240");
-        stopEngine();
     }
 
     /**

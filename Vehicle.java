@@ -1,14 +1,14 @@
 import java.awt.*;
 
 public abstract class Vehicle implements Movable{
-    protected int nrDoors;        // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    protected double currentSpeed; // The current speed of the car
-    protected Color color;        // Color of the car
-    protected String modelName;  // Car model name
-    protected double xPos;  // x-coordinate of car
-    protected double yPos;  // y-coordinate of car
-    protected int[] direction;  // Direction of car, type array with two ints, e.g. {0, 1}
+    protected int nrDoors;        // Number of doors on the vehicle
+    protected double enginePower; // Engine power of the vehicle
+    protected double currentSpeed; // The current speed of the vehicle
+    protected Color color;        // Color of the vehicle
+    protected String modelName;  // Vehicle model name
+    protected double xPos;  // x-coordinate of vehicle
+    protected double yPos;  // y-coordinate of vehicle
+    protected int[] direction;  // Direction of vehicle, type array with two ints, e.g. {0, 1}
 
     public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;

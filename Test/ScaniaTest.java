@@ -33,7 +33,6 @@ class ScaniaTest {
         });
     }
 
-
     @Test
     void testGasWhenPlatformUp() {
         Scania scania = new Scania();

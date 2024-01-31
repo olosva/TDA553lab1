@@ -1,0 +1,49 @@
+import java.awt.*;
+
+public class CarTransport extends Truck {
+
+    protected boolean rampIsUp;
+    protected Car[] loadedCars;
+
+    public CarTransport () {
+        super(2, 800, Color.gray, "MAN", true);
+        this.rampIsUp = true;
+    }
+
+    public void raiseRamp() {
+        this.rampIsUp = true;
+    }
+
+    public void lowerRamp() {
+        if (currentSpeed == 0) {
+            this.rampIsUp = false;
+        } else {
+            throw new IllegalArgumentException("Vehicle is not stationary");
+        }
+    }
+
+    public void loadCar(Car car) {
+        if (!rampIsUp) {
+            if (car.xPos > this.xPos-2 && car.xPos < this.xPos+2 && car.yPos > this.yPos-2 && car.yPos < this.yPos+2) {
+                Car[] tempArray = new Car[loadedCars.length + 1];
+                for (int i = 0; i < loadedCars.length; i++)
+                    tempArray[i] = loadedCars[i];
+                tempArray[loadedCars.length] = car;
+                loadedCars = tempArray;
+            }
+        }
+    }
+
+    public void unloadCar() {  // Unloads one car (the last one to be loaded)
+        if (!rampIsUp) {
+            Car unloadedCar = loadedCars[loadedCars.length-1];
+            Car[] tempArray = new Car[loadedCars.length -1];
+            for (int i = 0; i < loadedCars.length; i++)
+                tempArray[i] = loadedCars[i];
+            loadedCars = tempArray;
+            unloadedCar.xPos = this.xPos+1;
+            unloadedCar.yPos = this.yPos+1;
+        }
+    }
+
+}
