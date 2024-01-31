@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkShop<T extends Car> implements Loadable{
+public class WorkShop<T extends Car> implements Loadable<T> {
     protected int maxCars;
 
     protected List<T> carsInShop = new ArrayList<>();
 
     public void Workshop(int maxCars) {
         this.maxCars = maxCars;
+
     }
 
     public void load(T car) {
@@ -18,6 +19,9 @@ public class WorkShop<T extends Car> implements Loadable{
 
 
     }
+    public void unload(){
+        carsInShop.removeFirst();
+    }
 
 }
-Workshop <Car> shop = new WorkShop();
+// Workshop <Volvo240> shop = new WorkShop();
