@@ -33,11 +33,10 @@ public class CarTransport extends Truck implements Loadable<Car> {
     public void load(Car car) {
         if (platform.platformInUse()) {
             if (car.xPos > this.xPos - 2 && car.xPos < this.xPos + 2 && car.yPos > this.yPos - 2 && car.yPos < this.yPos + 2) {
-                Car[] tempArray = new Car[loadedCars.length + 1];
-                for (int i = 0; i < loadedCars.length; i++)
-                    tempArray[i] = loadedCars[i];
-                tempArray[loadedCars.length] = car;
-                loadedCars = tempArray;
+                for (int i = 0; i < loadedCars.length - 1; i++) {
+                    if (loadedCars[i] == null)
+                        loadedCars[i] = car;
+                }
             }
         } else {
             throw new IllegalStateException("First you need to lower the platform");
@@ -46,13 +45,13 @@ public class CarTransport extends Truck implements Loadable<Car> {
 
     public void unload() {  // Unloads one car (the last one to be loaded)
         if (platform.platformInUse()) {
-            Car unloadedCar = loadedCars[loadedCars.length - 1];
-            Car[] tempArray = new Car[loadedCars.length - 1];
-            for (int i = 0; i < loadedCars.length - 1; i++)
-                tempArray[i] = loadedCars[i];
-            loadedCars = tempArray;
-            unloadedCar.xPos = this.xPos + 1;
-            unloadedCar.yPos = this.yPos + 1;
+            for (int i = 0; i < loadedCars.length - 1; i++) {
+                if (loadedCars[i] == null) {
+                    loadedCars[i - 1].xPos = this.xPos + 1;
+                    loadedCars[i - 1].xPos = this.yPos + 1;
+                    loadedCars[i - 1] = null;
+                }
+            }
         } else {
             throw new IllegalStateException("First you need to lower the platform");
         }
