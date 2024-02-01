@@ -1,5 +1,5 @@
 public class CarPlatform implements Platform{
-    private int rampState;
+    protected int rampState;
 
     public CarPlatform(){
         rampState=1;
@@ -14,9 +14,9 @@ public class CarPlatform implements Platform{
     }
     @Override
     public boolean platformInUse() {
-        if (rampState==0){
+        if (rampState==0) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
