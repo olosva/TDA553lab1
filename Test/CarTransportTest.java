@@ -29,7 +29,7 @@ public class CarTransportTest {
     }
 
     @Test
-    public void TestCannotLoadOrUnloadWhenPlatformIsUp() {
+    public void TestCannotLoadWhenPlatformIsUp() {
         CarTransport transport = new CarTransport(10);
         Saab95 saab = new Saab95();
         Volvo240 volvo = new Volvo240();

@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkShop<T extends Car> implements Loadable<T> {
-    protected int maxCars;
-    int xPos;
-    int yPos;
 
+    protected int maxCars;
+    protected int xPos;
+    protected int yPos;
     protected List<T> carsInShop = new ArrayList<>();
 
     public WorkShop(int maxCars, int xPos, int yPos) {
@@ -19,10 +19,10 @@ public class WorkShop<T extends Car> implements Loadable<T> {
         if (carsInShop.size() <= maxCars -1) {
             if (car.xPos > this.xPos-2 && car.xPos < this.xPos+2 && car.yPos > this.yPos-2 && car.yPos < this.yPos+2) {
                 carsInShop.add(car);
-            }else {
+            } else {
                 throw new IllegalArgumentException("Vehicle is not close enough");
             }
-        }else {
+        } else {
             throw new IllegalArgumentException("Workshop is already full");
         };
     }
@@ -30,7 +30,6 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     public void unload(){
         if (!carsInShop.isEmpty()){
             carsInShop.removeFirst();
-
         }
     }
 
@@ -41,6 +40,5 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     public T nextCarToUnload(){
         return carsInShop.getFirst();
     }
-
 
 }
