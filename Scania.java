@@ -1,36 +1,27 @@
 import java.awt.*;
 
-public class Scania extends Vehicle{
+public class Scania extends Truck {
 
-    protected double angleOfPlatform;
+    private final StandardPlatform platform;
+
     public Scania() {
-        super(2, 750, Color.red, "Scania");
-        angleOfPlatform = 0;
+        super(2, 750, Color.red, "Scania", new StandardPlatform());
+        platform = new StandardPlatform();
     }
-    public void changePlatformAngle(double degree){
+
+    public void raisePlatform(double degree) {
         if (currentSpeed == 0) {
-            if (angleOfPlatform + degree < 70 && angleOfPlatform + degree > 0) {
-                angleOfPlatform += degree;
-            } else {
-                throw new IllegalArgumentException("Platform angle out of range");
-            }
+            platform.raisePlatform();
         } else {
             throw new IllegalArgumentException("Vehicle not stationary");
         }
     }
 
-    @Override
-    public double speedFactor() {
-        return 0;
-    }
-
-    @Override
-    public void gas (double amount){
-        if (angleOfPlatform > 0){
-            super.gas(amount);
+    public void lowerPlatform(double degree) {
+        if (currentSpeed == 0) {
+            platform.lowerPlatform();
         } else {
-            throw new IllegalArgumentException("The platform is up");
+            throw new IllegalArgumentException("Vehicle not stationary");
         }
     }
-
 }

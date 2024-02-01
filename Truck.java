@@ -2,13 +2,20 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle {
 
-    protected boolean hasPlatform;
+    private final Platform platform;
 
-    public Truck(int nrDoors, double enginePower, Color color, String modelName, boolean hasPlatform) {
+    public Truck(int nrDoors, double enginePower, Color color, String modelName, Platform platform) {
         super(nrDoors, enginePower, color, modelName);
-        this.hasPlatform = hasPlatform;
+        this.platform = platform;
     }
-
+    @Override
+    public void gas(double amount) {
+        if (!(platform.platformInUse())) {
+            super.gas(amount);
+        } else {
+            throw new IllegalArgumentException("The platform is up");
+        }
+    }
     @Override
     public double speedFactor() {
         return enginePower*0.01;
