@@ -8,7 +8,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
 
     protected List<T> carsInShop = new ArrayList<>();
 
-    public void Workshop(int maxCars, int xPos, int yPos) {
+    public WorkShop(int maxCars, int xPos, int yPos) {
         this.maxCars = maxCars;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -19,12 +19,28 @@ public class WorkShop<T extends Car> implements Loadable<T> {
         if (carsInShop.size() <= maxCars -1) {
             if (car.xPos > this.xPos-2 && car.xPos < this.xPos+2 && car.yPos > this.yPos-2 && car.yPos < this.yPos+2) {
                 carsInShop.add(car);
+            }else {
+                throw new IllegalArgumentException("Vehicle is not close enough");
             }
-        }
-    }
-    public void unload(){
-        carsInShop.removeFirst();
+        }else {
+            throw new IllegalArgumentException("Workshop is already full");
+        };
     }
 
+    public void unload(){
+        if (!carsInShop.isEmpty()){
+            carsInShop.removeFirst();
+
+        }
+    }
+
+    public int getNrCars(){
+        return carsInShop.size();
+    }
+
+    public T nextCarToUnload(){
+        return carsInShop.getFirst();
+    }
+
+
 }
-// Workshop <Volvo240> shop = new WorkShop();
