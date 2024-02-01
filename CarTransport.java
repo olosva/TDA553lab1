@@ -33,7 +33,7 @@ public class CarTransport extends Truck implements Loadable<Car> {
     }
 
     public void load(Car car) {
-        if (platform.platformInUse()) {
+        if (platform.platformInUse() && currentSpeed == 0) {
             if (car.xPos > this.xPos - 2 && car.xPos < this.xPos + 2 && car.yPos > this.yPos - 2 && car.yPos < this.yPos + 2) {
                 if (loadedCars.size() < maxCars) {
                     loadedCars.add(car);
@@ -49,7 +49,7 @@ public class CarTransport extends Truck implements Loadable<Car> {
     }
 
     public void unload() {  // Unloads one car (the last one to be loaded)
-        if (platform.platformInUse()) {
+        if (platform.platformInUse() && currentSpeed == 0) {
             if (!loadedCars.isEmpty()) {
                 loadedCars.remove(loadedCars.size() - 1);
             } else {
