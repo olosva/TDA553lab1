@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class CarTransport extends Truck implements Loadable<Car> {
 
+
     private final CarPlatform platform;
     protected Car[] loadedCars;
 

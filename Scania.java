@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class Scania extends Truck {
 
+
     private final StandardPlatform platform;
 
     public Scania() {
@@ -11,7 +12,9 @@ public class Scania extends Truck {
 
     public void raisePlatform(double degree) {
         if (currentSpeed == 0) {
-            platform.raisePlatform();
+            for (int i = 0; i < degree; i++) {
+                platform.raisePlatform();
+            }
         } else {
             throw new IllegalArgumentException("Vehicle not stationary");
         }
@@ -19,9 +22,14 @@ public class Scania extends Truck {
 
     public void lowerPlatform(double degree) {
         if (currentSpeed == 0) {
-            platform.lowerPlatform();
+            for (int i = 0; i < degree; i++) {
+                platform.lowerPlatform();
+            }
         } else {
             throw new IllegalArgumentException("Vehicle not stationary");
         }
+    }
+    public double getPlatformAngle() {
+        return platform.getPlatformAngle();
     }
 }
