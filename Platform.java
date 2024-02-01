@@ -1,9 +1,9 @@
 public interface Platform {
 
-    public void raisePlatform();
+    void raisePlatform();
 
-    public void lowerPlatform();
+    void lowerPlatform();
 
-    public boolean platformInUse();
+    boolean platformInUse();
 
 }

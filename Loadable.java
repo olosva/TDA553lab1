@@ -1,7 +1,7 @@
 
-public interface Loadable {
+public interface Loadable<T extends Car> {
 
-    void load(Car car);
+    void load(T car);
     void unload();
 
 }

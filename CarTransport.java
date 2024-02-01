@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class CarTransport extends Truck {
+public class CarTransport extends Truck implements Loadable<Car> {
 
     private final CarPlatform platform;
     protected Car[] loadedCars;
 
     public CarTransport () {
-        super(2, 800, Color.gray, "MAN",new CarPlatform());
+        super(2, 800, Color.gray, "MAN", new CarPlatform());
         platform=new CarPlatform();
     }
 
@@ -26,7 +26,7 @@ public class CarTransport extends Truck {
         }
     }
 
-    public void loadCar(Car car) {
+    public void load(Car car) {
         if (platform.platformInUse()) {
             if (car.xPos > this.xPos-2 && car.xPos < this.xPos+2 && car.yPos > this.yPos-2 && car.yPos < this.yPos+2) {
                 Car[] tempArray = new Car[loadedCars.length + 1];
@@ -38,7 +38,7 @@ public class CarTransport extends Truck {
         }
     }
 
-    public void unloadCar() {  // Unloads one car (the last one to be loaded)
+    public void unload() {  // Unloads one car (the last one to be loaded)
         if (platform.platformInUse()) {
             Car unloadedCar = loadedCars[loadedCars.length-1];
             Car[] tempArray = new Car[loadedCars.length -1];
@@ -49,5 +49,4 @@ public class CarTransport extends Truck {
             unloadedCar.yPos = this.yPos+1;
         }
     }
-
 }
