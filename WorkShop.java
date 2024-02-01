@@ -8,7 +8,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
 
     protected List<T> carsInShop = new ArrayList<>();
 
-    public void Workshop(int maxCars, int xPos, int yPos) {
+    public WorkShop(int maxCars, int xPos, int yPos) {
         this.maxCars = maxCars;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -22,9 +22,8 @@ public class WorkShop<T extends Car> implements Loadable<T> {
             }
         }
     }
+
     public void unload(){
         carsInShop.removeFirst();
     }
-
 }
-// Workshop <Volvo240> shop = new WorkShop();
