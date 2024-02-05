@@ -2,12 +2,8 @@ import java.awt.*;
 
 public class Scania extends Truck {
 
-
-    private final StandardPlatform platform;
-
     public Scania() {
         super(2, 750, Color.red, "Scania", new StandardPlatform());
-        platform = new StandardPlatform();
     }
 
     public void raisePlatform(double degree) {
@@ -30,6 +26,6 @@ public class Scania extends Truck {
         }
     }
     public double getPlatformAngle() {
-        return platform.getPlatformAngle();
+        return platform.getPlatformLevel();
     }
 }

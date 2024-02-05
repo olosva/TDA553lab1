@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTransportTest {
 
@@ -16,9 +15,9 @@ public class CarTransportTest {
     @Test
     public void TestCarTransportPlatformRaisedAndLowered() {
         CarTransport transport = new CarTransport(10);
-        assertEquals(1, transport.platform.rampState);
+        assertEquals(1, transport.platform.getPlatformLevel(), 0.001);
         transport.lowerPlatform();
-        assertEquals(0, transport.platform.rampState);
+        assertEquals(0, transport.platform.getPlatformLevel(), 0.001);
     }
 
     @Test

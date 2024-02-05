@@ -1,5 +1,5 @@
 public class CarPlatform implements Platform{
-    protected int rampState;
+    private int rampState;
 
     public CarPlatform(){
         rampState=1;
@@ -19,5 +19,9 @@ public class CarPlatform implements Platform{
         } else {
             return false;
         }
+    }
+    @Override
+    public double getPlatformLevel() {
+        return rampState;
     }
 }

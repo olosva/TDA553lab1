@@ -6,7 +6,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     protected int maxCars;
     protected int xPos;
     protected int yPos;
-    protected List<T> carsInShop = new ArrayList<>();
+    private List<T> carsInShop = new ArrayList<>();
 
     public WorkShop(int maxCars, int xPos, int yPos) {
         this.maxCars = maxCars;

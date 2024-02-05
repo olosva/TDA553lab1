@@ -2,9 +2,9 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle {
 
-    private final Platform platform;
+    protected final Platform platform;
 
-    public Truck(int nrDoors, double enginePower, Color color, String modelName, Platform platform) {
+    public Truck(int nrDoors, double enginePower, Color color, String modelName, Platform platform){
         super(nrDoors, enginePower, color, modelName);
         this.platform = platform;
     }

@@ -4,15 +4,12 @@ import java.util.List;
 
 public class CarTransport extends Truck implements Loadable<Car> {
 
-
-    protected final CarPlatform platform;
     protected int maxCars;
     protected List<Car> loadedCars;
 
     public CarTransport (int maxAmountOfCars) {
         super(2, 800, Color.gray, "MAN", new CarPlatform());
         maxCars = maxAmountOfCars;
-        platform=new CarPlatform();
         loadedCars = new ArrayList<>();
     }
 

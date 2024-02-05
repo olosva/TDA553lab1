@@ -21,8 +21,8 @@ public class StandardPlatform implements Platform{
             throw new IllegalArgumentException("Platform angle out of range");
         }
     }
-
-    public double getPlatformAngle() {
+    @Override
+    public double getPlatformLevel() {
         return angleOfPlatform;
     }
 
