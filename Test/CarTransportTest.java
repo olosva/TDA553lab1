@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.*;
@@ -41,5 +42,22 @@ public class CarTransportTest {
         assertThrows(IllegalStateException.class, () -> {transport.unload();});
         transport.lowerPlatform();
         transport.unload();
+    }
+
+    @Test
+    public void TestCarTransportAndCarPositionWhenTransportingAndUnloading() {
+        CarTransport transport = new CarTransport(5);
+        transport.lowerPlatform();
+        Saab95 saab = new Saab95();
+        transport.load(saab);
+        transport.startEngine();
+        transport.move();
+        Assert.assertEquals(transport.xPos, saab.xPos, 0.001);
+        Assert.assertEquals(transport.yPos, saab.yPos, 0.001);
+        transport.stopEngine();
+        transport.lowerPlatform();
+        transport.unload();
+        Assert.assertEquals(transport.xPos + 0.5, saab.xPos, 0.001);
+        Assert.assertEquals(transport.yPos + 0.5, saab.yPos, 0.001);
     }
 }

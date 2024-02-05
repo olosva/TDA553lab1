@@ -16,6 +16,15 @@ public class CarTransport extends Truck implements Loadable<Car> {
         loadedCars = new ArrayList<>();
     }
 
+    @Override
+    public void move() {
+        super.move();
+        for (Car car : loadedCars) {
+            car.xPos = this.xPos;
+            car.yPos = this.yPos;
+        }
+    }
+
     public void raisePlatform() {
         if (currentSpeed==0){
             platform.raisePlatform();
@@ -51,6 +60,8 @@ public class CarTransport extends Truck implements Loadable<Car> {
     public void unload() {  // Unloads one car (the last one to be loaded)
         if (platform.platformInUse() && currentSpeed == 0) {
             if (!loadedCars.isEmpty()) {
+                loadedCars.getLast().xPos = this.xPos + 0.5;
+                loadedCars.getLast().yPos = this.yPos + 0.5;
                 loadedCars.remove(loadedCars.size() - 1);
             } else {
                 throw new IllegalStateException("The car transport is already empty");
