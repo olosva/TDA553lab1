@@ -21,6 +21,7 @@ public class DrawPanel extends JPanel{
     void moveit(int x, int y){
         volvoPoint.x = x;
         volvoPoint.y = y;
+
     }
 
     // Initializes the panel and reads the images
