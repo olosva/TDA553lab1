@@ -38,7 +38,7 @@ public class CarTransport extends Truck implements Loadable<Car> {
         }
     }
 
-    public void load(Car car) {
+    public void load(Car car) { // varken bil eller transport ska röra sig
         if (platform.platformInUse() && currentSpeed == 0) {
             if (car.xPos > this.xPos - 2 && car.xPos < this.xPos + 2 && car.yPos > this.yPos - 2 && car.yPos < this.yPos + 2) {
                 if (loadedCars.size() < maxCars) {
@@ -68,3 +68,6 @@ public class CarTransport extends Truck implements Loadable<Car> {
         }
     }
 }
+
+
+
