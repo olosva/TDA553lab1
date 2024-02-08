@@ -19,10 +19,12 @@ public class CarController {
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
+
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    public ArrayList<Vehicle> cars = new ArrayList<>();
+    public ArrayList<WorkShop> workshops = new ArrayList<>();
 
     //methods:
 
@@ -30,7 +32,21 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
+
+        Saab95 saab = new Saab95();
+        saab.xPos = 100;
+        Scania scania = new Scania();
+        scania.xPos = 200;
         cc.cars.add(new Volvo240());
+        cc.cars.add(saab);
+        cc.cars.add(scania);
+        cc.workshops.add(new WorkShop<Volvo240>(10, 300, 300));
+
+//        Car c = new Saab95();
+//        System.out.println(cc.cars.get(0) instanceof Volvo240);
+
+
+
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -45,15 +61,19 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            for (Car car : cars) {
+            for (Vehicle car : cars) {
+                double xPos = car.xPos + car.currentSpeed * car.direction[0];
+                double yPos = car.yPos + car.currentSpeed * car.direction[1];
+                if (car instanceof Car){
+                    if (checkLoadWorkshop((Car) car));
+                }
 
-                System.out.println(frame.X);
-                System.out.println(car.yPos);
-                if (0 <= car.xPos && car.xPos <= frame.X && 0 <= car.yPos && car.yPos <= frame.Y - 325 ) {
+
+                if (0 <= xPos && xPos <= frame.X && 0 <= yPos && yPos <= frame.Y - 300 ) {
                     car.move();
                     int x = (int) Math.round(car.xPos);
                     int y = (int) Math.round(car.yPos);
-                    frame.drawPanel.moveit(x, y);
+                    frame.drawPanel.moveit(car, x, y);
                 } else {
                     car.turnLeft();
                     car.turnLeft();
@@ -62,7 +82,7 @@ public class CarController {
                     car.move();
                     int x = (int) Math.round(car.xPos);
                     int y = (int) Math.round(car.yPos);
-                    frame.drawPanel.moveit(x, y);
+                    frame.drawPanel.moveit(car, x, y);
                 }
 
                 frame.drawPanel.repaint();
@@ -70,17 +90,22 @@ public class CarController {
         }
     }
 
+    private boolean checkLoadWorkshop(Car car){
+
+
+    }
+
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars
+        for (Vehicle car : cars
                 ) {
             car.gas(gas);
         }
     }
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars
+        for (Vehicle car : cars
         ) {
             car.brake(brake);
         }

@@ -20,7 +20,7 @@ public class CarView extends JFrame{
     // The controller member
     CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
 
@@ -42,17 +42,18 @@ public class CarView extends JFrame{
     // Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
-        initComponents(framename);
+        initComponents(framename, this.carC);
     }
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
+    private void initComponents(String title, CarController carC) {
 
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
+        this.drawPanel  = new DrawPanel(X, Y-240, this.carC);
         this.add(drawPanel);
 
 
@@ -112,6 +113,68 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 carC.brake(gasAmount);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            for (Vehicle car : carC.cars) {
+                    car.startEngine();
+                }
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle car : carC.cars) {
+                    car.stopEngine();
+                }
+            }
+        });
+
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle car : carC.cars) {
+                    if (car instanceof Saab95) {
+                       ((Saab95) car).setTurboOn();
+                    }
+                }
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle car : carC.cars) {
+                    if (car instanceof Saab95) {
+                        ((Saab95) car).setTurboOff();
+                    }
+                }
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle car : carC.cars) {
+                    if (car instanceof Truck) {
+                        ((Truck) car).platform.raisePlatform();
+                    }
+                }
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Vehicle car : carC.cars) {
+                    if (car instanceof Truck) {
+                        ((Truck) car).platform.lowerPlatform();
+                    }
+                }
             }
         });
 
