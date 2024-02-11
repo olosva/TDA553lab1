@@ -26,7 +26,6 @@ public class DrawPanel extends JPanel {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
