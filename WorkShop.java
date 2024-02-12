@@ -6,7 +6,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     protected int maxCars;
     protected int xPos;
     protected int yPos;
-    private List<T> carsInShop = new ArrayList<>();
+    public List<T> carsInShop = new ArrayList<>();
 
     public WorkShop(int maxCars, int xPos, int yPos) {
         this.maxCars = maxCars;
@@ -14,10 +14,10 @@ public class WorkShop<T extends Car> implements Loadable<T> {
         this.yPos = yPos;
 
     }
-
+        // regnummer
     public void load(T car) {
         if (carsInShop.size() <= maxCars -1) {
-            if (car.xPos > this.xPos-2 && car.xPos < this.xPos+2 && car.yPos > this.yPos-2 && car.yPos < this.yPos+2) {
+            if (car.xPos > this.xPos-10 && car.xPos < this.xPos+10 && car.yPos > this.yPos-10 && car.yPos < this.yPos+10) {
                 carsInShop.add(car);
             } else {
                 throw new IllegalArgumentException("Vehicle is not close enough");
@@ -40,5 +40,6 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     public T nextCarToUnload(){
         return carsInShop.getFirst();
     }
+
 
 }

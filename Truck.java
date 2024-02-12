@@ -25,6 +25,7 @@ public abstract class Truck extends Vehicle {
             throw new IllegalArgumentException("The platform is up");
         }
     }
+
     @Override
     public double speedFactor() {
         return enginePower*0.01;
