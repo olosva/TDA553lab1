@@ -15,7 +15,7 @@ public class StandardPlatform implements Platform{
         this.changeAngleOfPlatform(-1);
     }
     private void changeAngleOfPlatform(double degree){
-        if (angleOfPlatform + degree < 70 && angleOfPlatform + degree > 0) {
+        if (angleOfPlatform + degree <= 70 && angleOfPlatform + degree >= 0) {
             angleOfPlatform += degree;
         } else {
             throw new IllegalArgumentException("Platform angle out of range");

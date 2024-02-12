@@ -38,7 +38,6 @@ public class CarController {
         scania.xPos = 200;
         Volvo240 volvo = new Volvo240();
         volvo.xPos = 300;
-        volvo.yPos = 200;
 
         cc.cars.add(volvo);
         cc.cars.add(saab);
