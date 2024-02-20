@@ -6,9 +6,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
     protected int maxCars;
     protected int xPos;
     protected int yPos;
-    protected List<T> carsInShop = new ArrayList<>();
-
-    protected Class<T> type;
+    public List<T> carsInShop = new ArrayList<>();
 
     public WorkShop(int maxCars, int xPos, int yPos) {
         this.maxCars = maxCars;
@@ -16,7 +14,7 @@ public class WorkShop<T extends Car> implements Loadable<T> {
         this.yPos = yPos;
 
     }
-
+        // regnummer
     public void load(T car) {
         if (carsInShop.size() <= maxCars -1) {
             if (car.xPos > this.xPos-10 && car.xPos < this.xPos+10 && car.yPos > this.yPos-10 && car.yPos < this.yPos+10) {

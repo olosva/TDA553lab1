@@ -18,15 +18,15 @@ public class CarView extends JFrame {
     protected static final int Y = 800;
 
     // The controller member
-    CarController carC;
+    protected CarController carC;
 
-    DrawPanel drawPanel;
+    protected DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
+    protected int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
     JButton gasButton = new JButton("Gas");
@@ -106,6 +106,7 @@ public class CarView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 carC.gas(gasAmount);
             }
+
         });
 
         brakeButton.addActionListener(new ActionListener() {

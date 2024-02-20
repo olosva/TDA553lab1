@@ -13,7 +13,6 @@ public class DrawPanel extends JPanel {
     CarController carC;
 
     BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300, 300);
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y, CarController carC) {
@@ -33,7 +32,7 @@ public class DrawPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
+        g.drawImage(volvoWorkshopImage, carC.workshops.getFirst().xPos, carC.workshops.getFirst().yPos, null);
 
         for (Vehicle car : this.carC.cars) {
             // Print an error message in case file is not found with a try/catch block

@@ -38,7 +38,6 @@ public class CarController {
         scania.xPos = 200;
         Volvo240 volvo = new Volvo240();
         volvo.xPos = 300;
-        volvo.yPos = 200;
 
         cc.cars.add(volvo);
         cc.cars.add(saab);
@@ -57,7 +56,6 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
             for (Vehicle car : cars) {
                 double xPos = car.xPos + car.currentSpeed * car.direction[0];
                 double yPos = car.yPos + car.currentSpeed * car.direction[1];
@@ -67,18 +65,17 @@ public class CarController {
                         car.stopEngine();
                     }
                 }
-
-                if (0 <= xPos && xPos <= frame.X && 0 <= yPos && yPos <= frame.Y - 300) {
-                    car.move();
-
-                } else {
+                if (car.engineOn){
+                    if (0 <= xPos && xPos <= frame.X && 0 <= yPos && yPos <= frame.Y - 300) {
+                        car.move();
+                    } else {
                     car.turnLeft();
                     car.turnLeft();
                     car.stopEngine();
                     car.startEngine();
                     car.move();
-                }
-
+                    }
+             }
                 frame.drawPanel.repaint();
             }
         }
@@ -89,25 +86,21 @@ public class CarController {
             return true;
         } else {
             return false;
-
         }
     }
 
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Vehicle car : cars
-        ) {
-            car.gas(gas);
+        for (Vehicle car : cars)
+        {car.gas(gas);
         }
     }
 
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Vehicle car : cars
-        ) {
+        for (Vehicle car : cars) {
             car.brake(brake);
         }
     }
-
 }

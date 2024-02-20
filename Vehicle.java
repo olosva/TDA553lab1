@@ -10,6 +10,8 @@ public abstract class Vehicle implements Movable {
     protected double yPos;  // y-coordinate of vehicle
     protected int[] direction;  // Direction of vehicle, type array with two ints, e.g. {0, 1}
 
+    protected boolean engineOn;
+
     public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -26,6 +28,7 @@ public abstract class Vehicle implements Movable {
      */
     protected void startEngine() {
         currentSpeed = 0.1;
+        engineOn = true;
     }
 
     /**
@@ -33,6 +36,7 @@ public abstract class Vehicle implements Movable {
      */
     protected void stopEngine() {
         currentSpeed = 0;
+        engineOn = false;
     }
 
     /**
