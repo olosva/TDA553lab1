@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Observer {
 
-    void update(List<Vehicle> vehicles);
+    void notify(List<Vehicle> vehicles);
 }
