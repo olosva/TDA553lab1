@@ -4,19 +4,17 @@ public class Application {
     /**
      * Main method that starts the program
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         World world = new World();
 
-
-        Saab95 saab = new Saab95();
+        Saab95 saab = Factory.createSaab95();
         saab.xPos = 100;
-        saab.direction = new int[]{1,0};
-        Scania scania = new Scania();
+        Scania scania = Factory.createScania();
         scania.xPos = 200;
-        Volvo240 volvo = new Volvo240();
+        Volvo240 volvo = Factory.createVolvo240();
         volvo.xPos = 300;
-        world.addWorkshop(new WorkShop<Volvo240>(10, 300, 300));
+        world.addWorkshop(Factory.createVolvoWorkShop(10, 300, 300));
 
 
         world.addVehicle(volvo);

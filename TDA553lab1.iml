@@ -7,6 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Interfaces" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lab2-Old" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/View" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

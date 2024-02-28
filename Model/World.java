@@ -45,7 +45,7 @@ public class World implements ActionListener {
         }
     }
 
-    public List<Vehicle> getVehicles() {
+    public List<Vehicle> getVehicles()  {
         return vehicles;
     }
 
