@@ -161,7 +161,7 @@ public class World implements ActionListener {
                 default:
                     break;
             }
-            car.xPos = (int) ((Math.random() * (700 - 0)) + 0);
+            car.xPos = (int) ((Math.random() * (600 - 0)) + 0);
             addVehicle(car);
         }
     }

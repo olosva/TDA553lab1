@@ -21,12 +21,10 @@ public class Application {
         world.addVehicle(saab);
         world.addVehicle(scania);
 
-        DrawPanel drawPanel = new DrawPanel(800, 800 - 240, world.getVehicles(), world.getWorkshops());
-        View view = new View(drawPanel, world);
-        Controller controller = new Controller(drawPanel, "CarSim 1.0");
+        View view = new View(800, 800 - 240, world.getVehicles(), world.getWorkshops(), "CarSim 1.0");
+        new Controller(view, world);
 
         world.addObserver(view);
-        EventHandler eventHandler = new EventHandler(controller, world);
         world.startTimer();
     }
 }
