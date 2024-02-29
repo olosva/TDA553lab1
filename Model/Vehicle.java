@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Vehicle implements Movable {
+public abstract class Vehicle implements Movable, Positionable {
     protected int nrDoors;        // Number of doors on the vehicle
     protected double enginePower; // Engine power of the vehicle
     protected double currentSpeed; // The current speed of the vehicle
@@ -122,5 +122,15 @@ public abstract class Vehicle implements Movable {
         else {
             throw new IllegalArgumentException("Amount out of range");
         }
+    }
+
+    public double getXPos(){
+        return  xPos;
+    }
+    public double getYPos(){
+        return  yPos;
+    }
+    public String getName(){
+        return  modelName;
     }
 }

@@ -1,4 +1,3 @@
-
 public class Application {
 
     /**
@@ -21,7 +20,8 @@ public class Application {
         world.addVehicle(saab);
         world.addVehicle(scania);
 
-        View view = new View(800, 800 - 240, world.getVehicles(), world.getWorkshops(), "CarSim 1.0");
+
+        View view = new View(800, 800 - 240, world.getVehicles(), world.getWorkshops(), world.getDrawables(), "CarSim 1.0");
         new Controller(view, world);
 
         world.addObserver(view);

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkShop<T extends Car> implements Loadable<T> {
+public class WorkShop<T extends Car> implements Loadable<T>, Positionable {
 
     protected int maxCars;
     protected int xPos;
@@ -39,6 +39,16 @@ public class WorkShop<T extends Car> implements Loadable<T> {
 
     public T nextCarToUnload(){
         return carsInShop.getFirst();
+    }
+
+    public double getXPos(){
+        return  xPos;
+    }
+    public double getYPos(){
+        return  yPos;
+    }
+    public String getName(){
+        return "VolvoBrand";
     }
 
 

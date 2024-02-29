@@ -40,7 +40,7 @@ public class World implements ActionListener {
                 }
             }
             for (Observer observer : observers) {
-                observer.notify(this.getVehicles());
+                observer.notify(this.getDrawables());
             }
         }
     }
@@ -170,6 +170,13 @@ public class World implements ActionListener {
         if (vehicles.size() > 1) {
             vehicles.removeFirst();
         }
+    }
+
+    public List<Positionable> getDrawables(){
+        List<Positionable> drawables = new ArrayList<>();
+        drawables.addAll(workshops);
+        drawables.addAll(vehicles);
+        return drawables;
     }
 
 

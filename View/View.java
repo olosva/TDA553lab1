@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-// This panel represents the animated part of the view with the car images.
 
 public class View extends JPanel implements Observer{
 
-    List<Vehicle> vehicles;
-    List<WorkShop> workshops;
-    BufferedImage volvoWorkshopImage;
+
+    List<Positionable> drawables;
 
     JPanel controlPanel = new JPanel();
     private static final int X = 800;
@@ -32,23 +28,17 @@ public class View extends JPanel implements Observer{
     public JButton stopButton = new JButton("Stop cars");
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
 
     // Initializes the panel and reads the images
-    public View(int x, int y, List<Vehicle> vehicles, List<WorkShop> workshops, String title) {
+    public View(int x, int y, List<Vehicle> vehicles, List<WorkShop> workshops,List<Positionable> drawables, String title) {
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.vehicles = vehicles;
-        this.workshops = workshops;
-        try {
-            this.volvoWorkshopImage = ImageIO.read(View.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        this.drawables = drawables;
+
 
         frame.add(controlPanel);
         frame.add(this);
@@ -60,11 +50,6 @@ public class View extends JPanel implements Observer{
 
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
         gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner) e.getSource()).getValue();
-            }
-        });
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -117,26 +102,22 @@ public class View extends JPanel implements Observer{
     }
 
     @Override
-    public void notify(List<Vehicle> vehicles) {
-       this.repaint();
-    }
+    public void notify(List<Positionable> drawables) {
+        this.drawables = drawables;
+        this.repaint();
 
-
-    public int getGasAmount() {
-        return gasAmount;
     }
 
 
 @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoWorkshopImage, workshops.getFirst().xPos, workshops.getFirst().yPos, null);
 
-        for (Vehicle car : vehicles) {
+        for (Positionable car : drawables) {
             // Print an error message in case file is not found with a try/catch block
             try {
-                BufferedImage img = ImageIO.read(View.class.getResourceAsStream("pics/" + car.modelName + ".jpg"));
-                g.drawImage(img, (int) car.xPos, (int) car.yPos, null); // see javadoc for more info on the parameters
+                BufferedImage img = ImageIO.read(View.class.getResourceAsStream("pics/" + car.getName() + ".jpg"));
+                g.drawImage(img, (int) car.getXPos(), (int) car.getYPos(), null); // see javadoc for more info on the parameters
 
             } catch (IOException ex) {
                 ex.printStackTrace();
